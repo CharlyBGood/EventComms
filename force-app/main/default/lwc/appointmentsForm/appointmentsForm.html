@@ -6,6 +6,7 @@
   >
     <lightning-record-edit-form
       object-api-name={objApiName}
+      onsuccess={handleSuccess}
       class="slds-form-element"
     >
       <lightning-messages> </lightning-messages>
@@ -25,12 +26,16 @@
             ></lightning-input-field>
           </div>
           <div class="slds-col slds-size_1-of-2">
-            <lightning-input-field
-              field-name={contact}
-              required="true"
-            ></lightning-input-field>
+            <div class="slds-grid slds-grid_vertical-align-end">
+              <lightning-input-field
+                field-name={contact}
+                required="true"
+              ></lightning-input-field>
+              <c-add-contact-button
+                oncontactcreated={handleContactCreated}
+              ></c-add-contact-button>
+            </div>
           </div>
-          <c-add-contact-button></c-add-contact-button>
         </div>
         <div class="slds-grid slds-grid_align-end">
           <lightning-button

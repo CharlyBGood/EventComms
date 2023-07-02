@@ -1,28 +1,14 @@
 import { LightningElement } from "lwc";
-import { NavigationMixin } from "lightning/navigation";
+// import { NavigationMixin } from "lightning/navigation";
 
+export default class createRecordLwc extends LightningElement {
 
-export default class createRecordLwc extends NavigationMixin(LightningElement) {
- 
-  contactId;
-  name = "";
-
-  handleContactCreate(ev) {
-    this.contactId = undefined;
-    this.name = ev.target.value;
-    this.createContact();
-  }
-
-
-  
   createContact() {
-    this[NavigationMixin.Navigate]({
-          type: "standard__objectPage",
-          attributes: {
-            objectApiName: "Contact",
-            actionName: "new",
-            recordId: this.contactId
-          }
-        });
+    this.dispatchEvent(
+      new CustomEvent("contactcreated", {
+        bubbles: true,
+        composed: true
+      })
+    );
   }
 }
