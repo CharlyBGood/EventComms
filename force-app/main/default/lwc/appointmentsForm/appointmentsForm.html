@@ -12,7 +12,10 @@
       <lightning-messages> </lightning-messages>
       <div class="slds-col">
         <lightning-input-field
-          field-name={appointmentSubject}
+          field-name="Name"
+          value={appointmentSubject}
+          onchange={handleApptChange}
+          required="true"
         ></lightning-input-field>
         <lightning-input-field
           field-name={date}
@@ -30,6 +33,7 @@
               <lightning-input-field
                 field-name={contact}
                 required="true"
+                type="lookup"
               ></lightning-input-field>
               <c-add-contact-button
                 oncontactcreated={handleContactCreated}
@@ -40,7 +44,8 @@
         <div class="slds-grid slds-grid_align-end">
           <lightning-button
             class="slds-var-m-right_xx-small"
-            type="Submit"
+            type="submit"
+            name="submit"
             label="Save"
             variant="brand"
           ></lightning-button>

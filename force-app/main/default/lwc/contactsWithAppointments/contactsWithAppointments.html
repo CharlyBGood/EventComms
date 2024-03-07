@@ -1,0 +1,21 @@
+<template>
+  <lightning-card
+    title="Contacts with Appointments"
+    icon-name="custom:custom15"
+  >
+    <template if:true={contacts}>
+      <lightning-datatable
+        class="slds-max-medium-table_stacked"
+        key-field="Id"
+        data={contacts.data}
+        columns={columns}
+        hide-checkbox-column="true"
+        onrowaction={handleRowAction}
+      >
+      </lightning-datatable>
+    </template>
+    <template if:true={contacts.error}>
+      <p>{contact.error}</p>
+    </template>
+  </lightning-card>
+</template>

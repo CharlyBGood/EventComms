@@ -11,11 +11,16 @@ export default class AppointmentsForm extends NavigationMixin(
   LightningElement
 ) {
   objApiName = APPOINTMENT__OBJECT;
-  appointmentSubject = NAME_FIELD;
   date = DATE_FIELD;
   duration = DURATION_FIELD;
   contact = CONTACT_FIELD;
+  appointmentSubject = NAME_FIELD;
   appointmentId;
+
+  handleApptChange(e) {
+    this.appointmentSubject = e.target.value;
+    console.log(this.appointmentSubject);
+  }
 
   handleContactCreated() {
     this[NavigationMixin.Navigate]({
@@ -29,11 +34,11 @@ export default class AppointmentsForm extends NavigationMixin(
 
   handleSuccess(event) {
     this.appointmentId = event.detail.id;
-    const toastEv = new new ShowToastEvent({
+    const toastEv = new ShowToastEvent({
       title: "Appointment created",
       message: "Appointment record name: " + this.appointmentSubject,
       variant: "success"
-    })();
+    });
     this.dispatchEvent(toastEv);
     this[NavigationMixin.Navigate]({
       type: "standard__recordPage",
@@ -42,6 +47,6 @@ export default class AppointmentsForm extends NavigationMixin(
         actionName: "view",
         recordId: this.appointmentId
       }
-    })
+    });
   }
 }
